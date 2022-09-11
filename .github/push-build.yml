@@ -1,0 +1,13 @@
+name: Build the code
+'on':
+  push:
+    branches:
+     - ritesh/11-09-2022
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm audit fix --force
+      - run: npm run build
