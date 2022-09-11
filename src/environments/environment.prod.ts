@@ -7,5 +7,6 @@ export const environment = {
     apiKey: 'AIzaSyBYz_jtkz0UGrcVER2ySGLBh4Xv6zpBalE',
     authDomain: 'chatter-box-f7a23.firebaseapp.com',
     messagingSenderId: '1018179334494',
-  }
+  },
+  production: true
 }
