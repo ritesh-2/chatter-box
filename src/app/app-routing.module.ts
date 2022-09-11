@@ -13,15 +13,7 @@ const redirectToHome = () => redirectLoggedInTo(['/home'])
 
 const routes: Routes = [
   {
-<<<<<<< HEAD
-    path: '',redirectTo:'/home',pathMatch:'full'
-=======
-    path: '',pathMatch:'full', component: LandingPageComponent,
-    ...canActivate(redirectToHome),
-    ...canActivate(redirectToLogin)
-    // Test commmit
->>>>>>> 27d94160cf639c8bf0d964431fc488736fc6e575
-  },
+    path: '',redirectTo:'/home',pathMatch:'full'},
   {
     path: 'login', component: LoginComponent,
     ...canActivate(redirectToHome)
