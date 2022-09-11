@@ -1,0 +1,51 @@
+<div class="form-container mat-elevation-z5 text-center" *ngIf="user$ | async as user">
+    <h1>User profile</h1>
+    <div class="profile-image">
+        <img [src]="user.photoURL ??placeHolderImg" width="120" height="120">
+        <button mat-mini-fab (click)="inputFile.click()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <input #inputFile type="file" hidden (change)="uploadImage($event,user)">
+    <form [formGroup]="profileForm" (ngSubmit)="saveChanges()">
+        <div class="row">
+            <mat-form-field>
+                <input matInput placeholder="First Name" formControlName="firstName">
+                <mat-error *ngIf="firstName?.errors?.['required'] && firstName?.touched">This field is required !
+                </mat-error>
+                <!-- <mat-error *ngIf="email?.errors?.['email']" >Incorrect Format !</mat-error> -->
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Last name" formControlName="lastName">
+                <mat-error *ngIf="lastName?.errors?.['required'] && lastName?.touched">This field is required !
+                </mat-error>
+                <!-- <mat-error *ngIf="email?.errors?.['email']" >Incorrect Format !</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="row">
+
+            <mat-form-field>
+                <input matInput placeholder="Name" formControlName="displayName">
+                <mat-error *ngIf="displayName?.errors?.['required'] && displayName?.touched">This field is required !
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Phone" formControlName="phone">
+                <mat-error *ngIf="phone?.errors?.['required'] && phone?.touched">This field is required !</mat-error>
+                <!-- <mat-error *ngIf="email?.errors?.['email']" >Incorrect Format !</mat-error> -->
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <input matInput placeholder="Address" formControlName="address">
+            <mat-error *ngIf="address?.errors?.['required'] && address?.touched">This field is required !</mat-error>
+            <!-- <mat-error *ngIf="email?.errors?.['email']" >Incorrect Format !</mat-error> -->
+        </mat-form-field>
+
+        <!-- This Cross validator belongs to whole form so keeping it outside mat-field -->
+        <!-- <mat-error *ngIf="signUpForm?.errors?.['passwordsDontMatch']">Passowrd's should match!</mat-error> -->
+        <div class="center mt">
+            <button [disabled]="profileForm.invalid" mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+    </form>
+
+</div>

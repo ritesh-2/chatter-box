@@ -1,0 +1,90 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-toolbar {
+    justify-content: space-between;
+}
+
+.content {
+    padding: 32px;
+}
+
+.form-container {
+    display: block;
+    max-width: 300px;
+    margin: auto;
+
+    background: #eceff1;
+    padding: 48px;
+    border-radius: 16px;
+}
+
+
+
+.form-container mat-form-field {
+    width: 100%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.mt {
+    margin-top: 16px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.signUp-link {
+
+    margin-left: 8px;
+}
+
+.password-eye-gray {
+    color: #eceff1;
+}
+
+.profile-image > img{
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+    
+}
+.profile-image{
+    position: relative;
+    width: 120px;
+    margin: auto;
+}
+.profile-image > button{
+    position:  absolute;
+    bottom: 10px;
+    right: 0%;
+}
+.profile-image-toolbar{
+    border-radius: 100%;
+    margin-right: 8px;
+}
+
+@media(max-width:650px){
+    .form-container{
+        display: block;
+        max-width:40%;
+        margin: auto;
+    
+        background: #eceff1;
+        padding: 48px;
+        border-radius: 16px;
+    }
+}

@@ -1,0 +1,20 @@
+<div class="form-container mat-elevation-z5">
+    <h1 class="center">Log In</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+        <mat-form-field>
+            <input matInput placeholder="Email Address" formControlName="email">
+            <mat-error *ngIf="email?.errors?.['required'] && email?.touched">This field is required !</mat-error>
+            <mat-error *ngIf="email?.errors?.['email']" >Incorrect Format !</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" formControlName="password">
+            <mat-icon style="opacity: 0.5;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="password?.errors?.['required'] && password?.touched">This field is required !</mat-error>
+        </mat-form-field>
+        <div class="center mt">
+            <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit" >Login</button>
+        </div>
+      
+        <span class="mt center">New to our site? <a class="signUp-link" routerLink ="/signup">Sign Up!</a></span>
+    </form>
+</div>
