@@ -16,6 +16,7 @@ const routes: Routes = [
     path: '',pathMatch:'full', component: LandingPageComponent,
     ...canActivate(redirectToHome),
     ...canActivate(redirectToLogin)
+    // Test commmit
   },
   {
     path: 'login', component: LoginComponent,
