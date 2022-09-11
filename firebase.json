@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/chatter-box",
     "ignore": [
       "firebase.json",
       "**/.*",
