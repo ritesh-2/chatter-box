@@ -34,6 +34,6 @@ export class AppComponent {
   @modifiedDate : 03/09/2022
   **/
   logOut() {
-    this.authServcie.logOut().subscribe(()=>this.router.navigate(['/login']))
+    this.authServcie.logOut().subscribe(()=>this.router.navigate(['']))
   }
 }
