@@ -1,0 +1,104 @@
+<div *ngIf="!mobileView" class="container">
+    <div class="chat-list mat-elevation-z5">
+        <div class="search-input">
+            <mat-form-field>
+                <!-- <input matInput placeholder="Search for users.." [(ngModel)]="searchValue" -->
+                <input if="formContrilID" matInput placeholder="Search for users.." [formControl]="searchControl"
+                    [matAutocomplete]="users">
+                <!-- {{searchValue$ | async}} -->
+            </mat-form-field>
+            <!-- async pipe is used to retrieve data from observable -->
+            <mat-autocomplete #users="matAutocomplete">
+                <mat-option *ngFor="let user of users$ | async" (click)="createChat(user)">
+                    {{user?.displayName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <mat-selection-list [multiple]="false" [formControl]="chatListControl">
+            <mat-divider></mat-divider>
+            <mat-list-option *ngFor="let chat of myChat$ | async" [value]="chat.id">
+                <img matListAvatar [src]="chat.chatPic ? chat.chatPic: placeHolderImg">
+                <p mat-line class="chat-title">
+                    <span class="chat-name">
+                        {{chat.chatName}}
+                    </span>
+
+                    <span class="chat-date">
+                        {{chat.lastMessageDate | dateDisplay }}
+                    </span>
+
+                </p>
+                <p mat-line>
+                    <ng-container *ngIf="chat.isTyping; else lastMessage">
+                        <span *ngIf="chat.isTyping" style="display: block;" class="typing-indicator">Typing...</span>
+                    </ng-container>
+                    <ng-template #lastMessage>
+                        {{chat.lastMessage}}
+                    </ng-template>
+                </p>
+                <mat-divider></mat-divider>
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+    <div class="messages mat-elevation-z5">
+        <app-messages [selectedChat$]="selectedChat$"></app-messages>
+    </div>
+</div>
+
+<!---------------------------- Mobile View ------------------------------------------>
+<div *ngIf="mobileView">
+    <div *ngIf="!oneflag" class="container">
+        <div class="mobile-chat-list mat-elevation-z5">
+            <div class="search-input">
+                <mat-form-field>
+                    <!-- <input matInput placeholder="Search for users.." [(ngModel)]="searchValue" -->
+                    <input if="formContrilID" matInput placeholder="Search for users.." [formControl]="searchControl"
+                        [matAutocomplete]="users">
+                    <!-- {{searchValue$ | async}} -->
+                </mat-form-field>
+                <!-- async pipe is used to retrieve data from observable -->
+                <mat-autocomplete #users="matAutocomplete">
+                    <mat-option *ngFor="let user of users$ | async" (click)="createChat(user)">
+                        {{user?.displayName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <mat-selection-list [multiple]="false" [formControl]="chatListControl">
+                <mat-divider></mat-divider>
+                <mat-list-option *ngFor="let chat of myChat$ | async" [value]="chat.id">
+                    <img matListAvatar [src]="chat.chatPic ? chat.chatPic: placeHolderImg">
+                    <p mat-line class="chat-title">
+                        <span (click)="toggleChatList()"  class="chat-name">
+                            {{chat.chatName}}
+                        </span>
+
+                        <span class="chat-date">
+                            {{chat.lastMessageDate | dateDisplay }}
+                        </span>
+
+                    </p>
+                    <p mat-line>
+                        <!-- <ng-container *ngIf="chat.isTyping; else lastMessage">
+                            <span *ngIf="chat.isTyping"
+                                >Typing...</span>
+                        </ng-container>
+                        <ng-template #lastMessage>
+                            {{chat.lastMessage}}
+                        </ng-template> -->
+                        <span *ngIf="!chat.isTyping">{{chat.lastMessage}}</span>
+                        <span *ngIf="chat.isTyping"></span>
+                        
+                    </p>
+                    <mat-divider></mat-divider>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+    <div *ngIf="oneflag" class="mobile-messages-conatiner mat-elevation-z5">
+        <div>
+            <button (click)=" toggleChatList()" class="back-button"><mat-icon >keyboard_backspace</mat-icon></button>
+            <app-messages [selectedChat$]="selectedChat$"></app-messages>
+        </div>
+        
+    </div>
+</div>

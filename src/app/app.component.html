@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>Chatter Box</span>
+  <ng-container *ngIf="user$ | async as user; else loginButton">
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <img class="profile-image-toolbar" src="" width="30" height="30" [src]="user.photoURL ?? placeHolderImg">
+      <!-- <mat-icon>account_circle</mat-icon> -->
+      {{user?.displayName}}
+      <mat-icon >expand_more</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>
+<ng-template #loginButton>
+  <button mat-button routerLink="login">
+    <mat-icon> login </mat-icon> Log In
+  </button>
+</ng-template>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logOut()">Log Out</button>
+  <button *ngIf="currentRoute != '/profile' "  mat-menu-item routerLink="/profile">Profile</button>
+  <button *ngIf="currentRoute == '/profile' " mat-menu-item routerLink="/home">Home</button>
+</mat-menu>

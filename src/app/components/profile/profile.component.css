@@ -1,0 +1,22 @@
+.form-container{
+    max-width: 400px;
+    margin-top: 80px;
+}
+
+.row{
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width:650px) {
+    .form-container{
+        max-width: 40%;
+        margin-top: 80px;
+    }
+
+    .row{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
